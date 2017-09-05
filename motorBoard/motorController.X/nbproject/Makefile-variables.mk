@@ -1,0 +1,13 @@
+#
+# Generated - do not edit!
+#
+# NOCDDL
+#
+CND_BASEDIR=`pwd`
+# dsPIC33FJ32MC102 configuration
+CND_ARTIFACT_DIR_dsPIC33FJ32MC102=dist/dsPIC33FJ32MC102/production
+CND_ARTIFACT_NAME_dsPIC33FJ32MC102=motorController.X.production.hex
+CND_ARTIFACT_PATH_dsPIC33FJ32MC102=dist/dsPIC33FJ32MC102/production/motorController.X.production.hex
+CND_PACKAGE_DIR_dsPIC33FJ32MC102=${CND_DISTDIR}/dsPIC33FJ32MC102/package
+CND_PACKAGE_NAME_dsPIC33FJ32MC102=motorcontroller.x.tar
+CND_PACKAGE_PATH_dsPIC33FJ32MC102=${CND_DISTDIR}/dsPIC33FJ32MC102/package/motorcontroller.x.tar

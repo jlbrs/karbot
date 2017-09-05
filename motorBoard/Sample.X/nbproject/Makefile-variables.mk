@@ -1,0 +1,55 @@
+#
+# Generated - do not edit!
+#
+# NOCDDL
+#
+CND_BASEDIR=`pwd`
+# dspic33ep256gp506_pim configuration
+CND_ARTIFACT_DIR_dspic33ep256gp506_pim=dist/dspic33ep256gp506_pim/production
+CND_ARTIFACT_NAME_dspic33ep256gp506_pim=Sample.X.production.hex
+CND_ARTIFACT_PATH_dspic33ep256gp506_pim=dist/dspic33ep256gp506_pim/production/Sample.X.production.hex
+CND_PACKAGE_DIR_dspic33ep256gp506_pim=${CND_DISTDIR}/dspic33ep256gp506_pim/package
+CND_PACKAGE_NAME_dspic33ep256gp506_pim=sample.x.tar
+CND_PACKAGE_PATH_dspic33ep256gp506_pim=${CND_DISTDIR}/dspic33ep256gp506_pim/package/sample.x.tar
+# dspic33ep256mu506_pim configuration
+CND_ARTIFACT_DIR_dspic33ep256mu506_pim=dist/dspic33ep256mu506_pim/production
+CND_ARTIFACT_NAME_dspic33ep256mu506_pim=Sample.X.production.hex
+CND_ARTIFACT_PATH_dspic33ep256mu506_pim=dist/dspic33ep256mu506_pim/production/Sample.X.production.hex
+CND_PACKAGE_DIR_dspic33ep256mu506_pim=${CND_DISTDIR}/dspic33ep256mu506_pim/package
+CND_PACKAGE_NAME_dspic33ep256mu506_pim=sample.x.tar
+CND_PACKAGE_PATH_dspic33ep256mu506_pim=${CND_DISTDIR}/dspic33ep256mu506_pim/package/sample.x.tar
+# dspic33fj12gp202_pim configuration
+CND_ARTIFACT_DIR_dspic33fj12gp202_pim=dist/dspic33fj12gp202_pim/production
+CND_ARTIFACT_NAME_dspic33fj12gp202_pim=Sample.X.production.hex
+CND_ARTIFACT_PATH_dspic33fj12gp202_pim=dist/dspic33fj12gp202_pim/production/Sample.X.production.hex
+CND_PACKAGE_DIR_dspic33fj12gp202_pim=${CND_DISTDIR}/dspic33fj12gp202_pim/package
+CND_PACKAGE_NAME_dspic33fj12gp202_pim=sample.x.tar
+CND_PACKAGE_PATH_dspic33fj12gp202_pim=${CND_DISTDIR}/dspic33fj12gp202_pim/package/sample.x.tar
+# dspic33fj16gp102_pim configuration
+CND_ARTIFACT_DIR_dspic33fj16gp102_pim=dist/dspic33fj16gp102_pim/production
+CND_ARTIFACT_NAME_dspic33fj16gp102_pim=Sample.X.production.hex
+CND_ARTIFACT_PATH_dspic33fj16gp102_pim=dist/dspic33fj16gp102_pim/production/Sample.X.production.hex
+CND_PACKAGE_DIR_dspic33fj16gp102_pim=${CND_DISTDIR}/dspic33fj16gp102_pim/package
+CND_PACKAGE_NAME_dspic33fj16gp102_pim=sample.x.tar
+CND_PACKAGE_PATH_dspic33fj16gp102_pim=${CND_DISTDIR}/dspic33fj16gp102_pim/package/sample.x.tar
+# dspic33fj16gs504_pim configuration
+CND_ARTIFACT_DIR_dspic33fj16gs504_pim=dist/dspic33fj16gs504_pim/production
+CND_ARTIFACT_NAME_dspic33fj16gs504_pim=Sample.X.production.hex
+CND_ARTIFACT_PATH_dspic33fj16gs504_pim=dist/dspic33fj16gs504_pim/production/Sample.X.production.hex
+CND_PACKAGE_DIR_dspic33fj16gs504_pim=${CND_DISTDIR}/dspic33fj16gs504_pim/package
+CND_PACKAGE_NAME_dspic33fj16gs504_pim=sample.x.tar
+CND_PACKAGE_PATH_dspic33fj16gs504_pim=${CND_DISTDIR}/dspic33fj16gs504_pim/package/sample.x.tar
+# dspic33fj32gp204_pim configuration
+CND_ARTIFACT_DIR_dspic33fj32gp204_pim=dist/dspic33fj32gp204_pim/production
+CND_ARTIFACT_NAME_dspic33fj32gp204_pim=Sample.X.production.hex
+CND_ARTIFACT_PATH_dspic33fj32gp204_pim=dist/dspic33fj32gp204_pim/production/Sample.X.production.hex
+CND_PACKAGE_DIR_dspic33fj32gp204_pim=${CND_DISTDIR}/dspic33fj32gp204_pim/package
+CND_PACKAGE_NAME_dspic33fj32gp204_pim=sample.x.tar
+CND_PACKAGE_PATH_dspic33fj32gp204_pim=${CND_DISTDIR}/dspic33fj32gp204_pim/package/sample.x.tar
+# dspic33fj64gs610_pim configuration
+CND_ARTIFACT_DIR_dspic33fj64gs610_pim=dist/dspic33fj64gs610_pim/production
+CND_ARTIFACT_NAME_dspic33fj64gs610_pim=Sample.X.production.hex
+CND_ARTIFACT_PATH_dspic33fj64gs610_pim=dist/dspic33fj64gs610_pim/production/Sample.X.production.hex
+CND_PACKAGE_DIR_dspic33fj64gs610_pim=${CND_DISTDIR}/dspic33fj64gs610_pim/package
+CND_PACKAGE_NAME_dspic33fj64gs610_pim=sample.x.tar
+CND_PACKAGE_PATH_dspic33fj64gs610_pim=${CND_DISTDIR}/dspic33fj64gs610_pim/package/sample.x.tar
