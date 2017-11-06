@@ -25,7 +25,7 @@
     <conf name="dsPIC33FJ32MC102" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>dsPIC33FJ32GP102</targetDevice>
+        <targetDevice>dsPIC33FJ32MC102</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
