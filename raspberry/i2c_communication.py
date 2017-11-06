@@ -17,8 +17,13 @@ class I2CCommunication:
         :param speed: integer between -100 and +100
         :return: void
         """
+        speed128 = (128 * speed)/100
+        if speed128 > 127:
+            speed128 = 127  # just in case, as value on 1Byte is in [-128  127]
+        elif speed128 < -128:
+            speed128 = -128
         try:
-            self._bus.write_byte_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.SPEED, speed)
+            self._bus.write_byte_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.SPEED, speed128)
         except IOError as e:
             print "[i2c]  I2C Error while sending speed: {}".format(e)
 
@@ -28,10 +33,15 @@ class I2CCommunication:
         :param angle: integer between -100 and +100
         :return: void
         """
+        angle128 = (128 * angle)/100
+        if angle128 > 127:
+            angle128 = 127  # just in case, as value on 1Byte is in [-128  127]
+        elif angle128 < -128:
+            angle128 = -128
         try:
-            self._bus.write_byte_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.ANGLE, angle)
+            self._bus.write_byte_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.ANGLE, angle128)
         except IOError as e:
-            print "[i2c]  I2C Error while sending speed: {}".format(e)
+            print "[i2c]  I2C Error while sending angle: {}".format(e)
 
     # def send_i2c(address, cmd, vals):
     #     try:
