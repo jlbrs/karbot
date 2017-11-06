@@ -18,7 +18,7 @@ class I2CCommunication:
         :return: void
         """
         try:
-            self._bus.write_i2c_block_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.SPEED, speed)
+            self._bus.write_byte_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.SPEED, speed)
         except IOError as e:
             print "[i2c]  I2C Error while sending speed: {}".format(e)
 
@@ -29,7 +29,7 @@ class I2CCommunication:
         :return: void
         """
         try:
-            self._bus.write_i2c_block_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.ANGLE, angle)
+            self._bus.write_byte_data(self._I2C_BUS_PIC_ADDRESS, PROTOCOL.I2C.ANGLE, angle)
         except IOError as e:
             print "[i2c]  I2C Error while sending speed: {}".format(e)
 
