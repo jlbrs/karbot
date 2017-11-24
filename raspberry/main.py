@@ -19,6 +19,7 @@ def on_wifi_message_received(data):
     except IndexError:
         pass
 
+
 print "[main] Starting I2C"
 i2c = None
 try:
