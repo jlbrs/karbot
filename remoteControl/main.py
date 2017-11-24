@@ -5,7 +5,7 @@ from protocol import PROTOCOL
 
 
 class Robot:
-    _IP_ADDRESS = "localhost"  # "192.168.1.5"
+    _IP_ADDRESS = "192.168.1.5"  # "localhost"
     _TCP_PORT = PROTOCOL.WIFI.TCP_PORT
 
     def __init__(self):
