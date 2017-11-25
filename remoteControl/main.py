@@ -5,29 +5,29 @@ from protocol import PROTOCOL
 
 
 class Robot:
-    _IP_ADDRESS = "192.168.1.5"
+    _IP_ADDRESS = "192.168.111.137"
     _TCP_PORT = PROTOCOL.WIFI.TCP_PORT
 
     def __init__(self):
         self._current_angle = 0
         self._current_speed = 0
 
-        # Connect to the raspberry
-        print "Connecting to raspberry ({}:{})...".format(self._IP_ADDRESS, self._TCP_PORT)
-        self._raspberry_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self._raspberry_socket.connect((self._IP_ADDRESS, self._TCP_PORT))
-        try:
-            self._raspberry_socket.sendall(PROTOCOL.WIFI.HELLO)
-            response = self._raspberry_socket.recv(1024)
-            print "Test message: {}".format(response)
-            if response != PROTOCOL.WIFI.HELLO:
-                print "[ERROR] Did not receive hello from raspberry, are you sure the IP is {}?".format(
-                    self._IP_ADDRESS)
-        except Exception as e:
-            self._raspberry_socket.close()
-            print "[ERROR] Could not connect to raspberry ({}). Error was: {}".format(self._IP_ADDRESS, e)
-            exit(-1)
-        print "Raspberry connected!"
+        # # Connect to the raspberry
+        # print "Connecting to raspberry ({}:{})...".format(self._IP_ADDRESS, self._TCP_PORT)
+        # self._raspberry_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # self._raspberry_socket.connect((self._IP_ADDRESS, self._TCP_PORT))
+        # try:
+        #     self._raspberry_socket.sendall(PROTOCOL.WIFI.HELLO)
+        #     response = self._raspberry_socket.recv(1024)
+        #     print "Test message: {}".format(response)
+        #     if response != PROTOCOL.WIFI.HELLO:
+        #         print "[ERROR] Did not receive hello from raspberry, are you sure the IP is {}?".format(
+        #             self._IP_ADDRESS)
+        # except Exception as e:
+        #     self._raspberry_socket.close()
+        #     print "[ERROR] Could not connect to raspberry ({}). Error was: {}".format(self._IP_ADDRESS, e)
+        #     exit(-1)
+        # print "Raspberry connected!"
 
     def cleanup(self):
         self.set_direction(0)
@@ -43,6 +43,12 @@ class Robot:
         self._current_speed = int(-raw_value * 100)
         print("Speed: {}%".format(self._current_speed))
         self._send_to_raspberry()
+
+    def get_direction(self):
+        return self._current_angle
+
+    def get_speed(self):
+        return self._current_speed
 
     def _send_to_raspberry(self):
         data = PROTOCOL.WIFI.convert_data_to_wifi_message(
@@ -84,7 +90,24 @@ try:
         elif event.type == pygame.JOYBUTTONDOWN:
             break
         elif event.type == pygame.KEYDOWN:
-            break
+            if event.key == pygame.K_a:
+                currentDirection=robot.get_direction()
+                robot.set_direction(min(1,max(-1,currentDirection/100.-0.1)))
+            elif event.key == pygame.K_d:
+                currentDirection=robot.get_direction()
+                robot.set_direction(min(1,max(-1,currentDirection/100.+0.1)))
+            elif event.key == pygame.K_w:
+                currentSpeed=robot.get_speed()
+                robot.set_speed(min(1,max(-1,-currentSpeed/100.-0.1)))
+            elif event.key == pygame.K_s:
+                currentSpeed=robot.get_speed()
+                robot.set_speed(min(1,max(-1,-currentSpeed/100.+0.1)))
+            elif event.key == pygame.K_SPACE:
+                robot.set_direction(0)
+                robot.set_speed(0)
+            elif event.key == pygame.K_RETURN:
+                break
+
 finally:
     print "Exiting..."
     robot.cleanup()
