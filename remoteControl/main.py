@@ -1,33 +1,33 @@
 import socket
 import pygame
+import sys
 
 from protocol import PROTOCOL
 
 
 class Robot:
-    _IP_ADDRESS = "192.168.111.137"
     _TCP_PORT = PROTOCOL.WIFI.TCP_PORT
 
-    def __init__(self):
+    def __init__(self, ip):
         self._current_angle = 0
         self._current_speed = 0
+        self._ip_address = ip
 
-        # # Connect to the raspberry
-        # print "Connecting to raspberry ({}:{})...".format(self._IP_ADDRESS, self._TCP_PORT)
-        # self._raspberry_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # self._raspberry_socket.connect((self._IP_ADDRESS, self._TCP_PORT))
-        # try:
-        #     self._raspberry_socket.sendall(PROTOCOL.WIFI.HELLO)
-        #     response = self._raspberry_socket.recv(1024)
-        #     print "Test message: {}".format(response)
-        #     if response != PROTOCOL.WIFI.HELLO:
-        #         print "[ERROR] Did not receive hello from raspberry, are you sure the IP is {}?".format(
-        #             self._IP_ADDRESS)
-        # except Exception as e:
-        #     self._raspberry_socket.close()
-        #     print "[ERROR] Could not connect to raspberry ({}). Error was: {}".format(self._IP_ADDRESS, e)
-        #     exit(-1)
-        # print "Raspberry connected!"
+        # Connect to the raspberry
+        print "Connecting to raspberry ({}:{})...".format(self._ip_address, self._TCP_PORT)
+        self._raspberry_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            self._raspberry_socket.connect((self._ip_address, self._TCP_PORT))
+            self._raspberry_socket.sendall(PROTOCOL.WIFI.HELLO)
+            response = self._raspberry_socket.recv(1024)
+            print "Test message: {}".format(response)
+            if response != PROTOCOL.WIFI.HELLO:
+                print "[ERROR] Did not receive hello from raspberry, are you sure the IP is {}?".format(
+                    self._ip_address)
+            print "Raspberry connected!"
+        except Exception as e:
+            self._raspberry_socket.close()
+            print "[ERROR] Could not connect to raspberry ({}). Error was: {}".format(self._ip_address, e)
 
     def cleanup(self):
         self.set_direction(0)
@@ -65,7 +65,17 @@ class Robot:
 # -------- Main Program Loop -----------
 
 # Initialize robot
-robot = Robot()
+robot = None
+default_ip = "192.168.111.137"
+
+if len(sys.argv) == 2:
+    robot = Robot(sys.argv[1])
+else:
+    print ""
+    print "Usage: python {} [IP]".format(sys.argv[0].split("/")[-1])
+    print "       IP: IP address of the Raspberry. Default value is {}".format(default_ip)
+    print ""
+    robot = Robot(default_ip)
 
 # Initialize pyGame
 print "Initializing joystick..."
