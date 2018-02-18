@@ -1,6 +1,7 @@
 import socket
 import pygame
 import sys
+from threading import Timer,Thread,Event
 
 from protocol import PROTOCOL
 
@@ -61,13 +62,33 @@ class Robot:
         except Exception as e:
             print "[ERROR] Could not send data to raspberry. Error was: {}".format(e)
 
+    def watchdog(self):
+        self._send_to_raspberry()
+
+class perpetualTimer():
+   def __init__(self,t,hFunction):
+      self.t=t
+      self.hFunction = hFunction
+      self.thread = Timer(self.t,self.handle_function)
+
+   def handle_function(self):
+      self.hFunction()
+      self.thread = Timer(self.t,self.handle_function)
+      self.thread.start()
+
+   def start(self):
+      self.thread.start()
+
+   def cancel(self):
+      self.thread.cancel()
+
+
 
 # -------- Main Program Loop -----------
 
 # Initialize robot
 robot = None
 default_ip = "192.168.111.137"
-
 if len(sys.argv) == 2:
     robot = Robot(sys.argv[1])
 else:
@@ -76,6 +97,11 @@ else:
     print "       IP: IP address of the Raspberry. Default value is {}".format(default_ip)
     print ""
     robot = Robot(default_ip)
+
+
+
+t = perpetualTimer(0.5,robot.watchdog)
+t.start()
 
 # Initialize pyGame
 print "Initializing joystick..."
@@ -93,11 +119,13 @@ try:
         if event.type == pygame.JOYAXISMOTION:
             if event.axis == 0:
                 robot.set_direction(event.value)
-            elif event.axis == 2:
+            elif event.axis == 1:
                 robot.set_speed(event.value)
         elif event.type == pygame.QUIT:
+            t.cancel()
             break
         elif event.type == pygame.JOYBUTTONDOWN:
+            t.cancel()
             break
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
@@ -116,6 +144,7 @@ try:
                 robot.set_direction(0)
                 robot.set_speed(0)
             elif event.key == pygame.K_RETURN:
+                t.cancel()
                 break
 
 finally:
