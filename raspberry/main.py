@@ -8,6 +8,7 @@ from threading import Event
 
 
 command_received = Event()
+robot_is_stopped = True
 
 
 def on_wifi_message_received(data):
@@ -30,7 +31,7 @@ def on_wifi_message_received(data):
 def stop_the_robot():
     print 'Timeout! no order received in the last second. Stopping the robot!'
     i2c.send_speed(0)
-    command_received.set()
+    command_received.clear()
 
 
 print "[main] Starting I2C"
@@ -46,8 +47,11 @@ with WifiServer() as wifi:
     try:
         while True:
             sleep(1)
-            if not command_received.is_set():
+            if robot_is_stopped and command_received.is_set():
+                robot_is_stopped = False
+            elif not robot_is_stopped and not command_received.is_set():
                 stop_the_robot()
+                robot_is_stopped = True
     except KeyboardInterrupt:
         print ""
         print "[main] Exiting..."
