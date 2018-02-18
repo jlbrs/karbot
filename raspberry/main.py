@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from wifi_server import WifiServer
 from i2c_communication import I2CCommunication, FakeI2CCommunication
 from protocol import PROTOCOL
