@@ -32,6 +32,7 @@ def alarm_handler(signum, frame):
 print "[main] Initializing alarms"
 # Set the signal handler and a 5-second alarm
 signal.signal(signal.SIGALRM, alarm_handler)
+signal.alarm(5)
 
 print "[main] Starting I2C"
 i2c = None
