@@ -29,7 +29,6 @@ def on_wifi_message_received(data):
 
 
 def stop_the_robot():
-    print 'Timeout! no order received in the last second. Stopping the robot!'
     i2c.send_speed(0)
     command_received.clear()
 
@@ -48,10 +47,15 @@ with WifiServer() as wifi:
         while True:
             sleep(1)
             if robot_is_stopped and command_received.is_set():
+                print "Robot is not stopped anymore!"
                 robot_is_stopped = False
+
             elif not robot_is_stopped and not command_received.is_set():
+                print 'Timeout while robot was moving! Stopping the robot!'
                 stop_the_robot()
+                print "Robot is stopped."
                 robot_is_stopped = True
+
     except KeyboardInterrupt:
         print ""
         print "[main] Exiting..."
