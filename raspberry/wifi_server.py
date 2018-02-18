@@ -60,6 +60,7 @@ class WifiServer:
     def __exit__(self, exc_type, exc_val, exc_tb):
         print "[wifi] Stopping server..."
         self._server.running = False
+        self._server.socket.settimeout(1)
         self._server.shutdown()
         self._server.server_close()
         print "[wifi] Server stopped!"

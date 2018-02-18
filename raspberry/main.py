@@ -4,15 +4,14 @@ from wifi_server import WifiServer
 from i2c_communication import I2CCommunication, FakeI2CCommunication
 from protocol import PROTOCOL
 from time import sleep
-import signal
-import threading
+from threading import Event
 
 
-message_received = threading.Event()
+command_received = Event()
 
 
 def on_wifi_message_received(data):
-    message_received.set()
+    command_received.set()
     try:
         robot_config = PROTOCOL.WIFI.convert_wifi_message_to_object(data)
     except Exception as e:
@@ -28,15 +27,11 @@ def on_wifi_message_received(data):
         pass
 
 
-def alarm_handler(signum=None, frame=None):
+def stop_the_robot():
     print 'Timeout! no order received in the last second. Stopping the robot!'
     i2c.send_speed(0)
-    message_received.clear()
+    command_received.set()
 
-
-print "[main] Initializing alarms"
-# Set the signal handler and a 5-second alarm
-signal.signal(signal.SIGALRM, alarm_handler)
 
 print "[main] Starting I2C"
 i2c = None
@@ -51,8 +46,8 @@ with WifiServer() as wifi:
     try:
         while True:
             sleep(1)
-            if not message_received.is_set():
-                alarm_handler()
+            if not command_received.is_set():
+                stop_the_robot()
     except KeyboardInterrupt:
         print ""
         print "[main] Exiting..."
