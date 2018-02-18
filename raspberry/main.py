@@ -49,13 +49,13 @@ with WifiServer() as wifi:
             if robot_is_stopped and command_received.is_set():
                 print "Receiving orders!"
                 robot_is_stopped = False
-                command_received.clear()
 
             elif not robot_is_stopped and not command_received.is_set():
                 print 'Timeout while robot was moving! Stopping the robot!'
                 stop_the_robot()
-                command_received.clear()
                 robot_is_stopped = True
+
+            command_received.clear()
 
     except KeyboardInterrupt:
         print ""
