@@ -13,6 +13,7 @@ robot_is_stopped = True
 
 def on_wifi_message_received(data):
     command_received.set()
+    print data
     try:
         robot_config = PROTOCOL.WIFI.convert_wifi_message_to_object(data)
     except Exception as e:
@@ -30,7 +31,6 @@ def on_wifi_message_received(data):
 
 def stop_the_robot():
     i2c.send_speed(0)
-    command_received.clear()
 
 
 print "[main] Starting I2C"
@@ -47,13 +47,14 @@ with WifiServer() as wifi:
         while True:
             sleep(1)
             if robot_is_stopped and command_received.is_set():
-                print "Robot is not stopped anymore!"
+                print "Receiving orders!"
                 robot_is_stopped = False
+                command_received.clear()
 
             elif not robot_is_stopped and not command_received.is_set():
                 print 'Timeout while robot was moving! Stopping the robot!'
                 stop_the_robot()
-                print "Robot is stopped."
+                command_received.clear()
                 robot_is_stopped = True
 
     except KeyboardInterrupt:
