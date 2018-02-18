@@ -112,9 +112,9 @@ void config_pwm() {
     //P1TPER = [Fcy/(Fpwm*Scalar)] - 1
     //Therefore P1TPER = [3.6864M/(20250*1)] - 1 = 181;
 //    P1TPER              = 181;
-    P1DC1               = 0x7fff;
-    P1DC2               = 0x7FFF;
-    P1DC3               = 0x7FFF;
+    P1DC1               = 0;
+    P1DC2               = 0;
+    P1DC3               = 0;
     
     P1TCONbits.PTOPS = 1; // PWM timer post-scale
     P1TCONbits.PTCKPS = 0; // PWM timer pre-scale
